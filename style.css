@@ -1,0 +1,882 @@
+/* Variables CSS */
+:root {
+    --primary-color: #007aff;
+    --secondary-color: #5ac8fa;
+    --background-dark: #0a0a0a;
+    --text-light: #fefefe;
+    --card-background: #1c1c1e;
+    --border-color: #333;
+    --spacing-sm: 10px;
+    --spacing-md: 20px;
+    --spacing-lg: 60px;
+    --transition-duration: 0.5s;
+    --animation-delay-base: 0.1s;
+    --navbar-height: 70px; /* Altura de la barra de navegación */
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Desplazamiento suave para todos los enlaces */
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    line-height: 1.6;
+    color: var(--text-light);
+    background-color: var(--background-dark);
+    overflow-x: hidden;
+    padding-top: var(--navbar-height); /* Espacio para la barra de navegación fija */
+}
+
+/* Contenedor general para centrar el contenido */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* Estilos de Botones */
+.btn {
+    display: inline-block;
+    background: var(--primary-color);
+    color: #fff;
+    padding: 14px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: background 0.3s ease, transform 0.2s ease;
+    margin-top: var(--spacing-md);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer; /* Añadir cursor pointer para botones */
+    border: none; /* Asegurar que no tengan borde predeterminado */
+}
+
+.btn:hover {
+    background: #006ee6;
+    transform: translateY(-2px);
+}
+
+.secondary-btn {
+    background: var(--card-background);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.secondary-btn:hover {
+    background: var(--primary-color);
+    color: var(--text-light);
+    transform: translateY(-2px);
+}
+
+/* ======================================== */
+/* Barra de Navegación (Nav) */
+/* ======================================== */
+.navbar {
+    position: fixed; /* Fija la barra de navegación */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--navbar-height);
+    background-color: rgba(0, 0, 0, 0.85); /* Fondo semitransparente para efecto "frosted glass" */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque */
+    -webkit-backdrop-filter: blur(10px); /* Compatibilidad con Safari */
+    border-bottom: 1px solid var(--border-color);
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    transition: background-color 0.3s ease;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.navbar-brand a {
+    color: var(--primary-color); /* Color de acento para la marca */
+    text-decoration: none;
+    font-size: 1.8em;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    /* Las animaciones de opacity y transform se manejan en JS al cargar */
+}
+
+.navbar-nav {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-nav li {
+    margin-left: 30px; /* Espacio entre los elementos del menú */
+}
+
+.navbar-nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 1.05em;
+    position: relative;
+    padding: 5px 0;
+    /* Las animaciones de opacity y transform se manejan en JS al cargar */
+}
+
+.navbar-nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+.navbar-nav a:hover::after,
+.navbar-nav a.active::after {
+    width: 100%;
+}
+
+.navbar-nav .nav-btn {
+    margin-top: 0; /* Anula el margin-top del .btn general */
+    padding: 8px 20px; /* Padding más pequeño para el botón del nav */
+    font-size: 0.95em;
+    border-radius: 8px;
+}
+
+/* Menú móvil */
+.menu-toggle {
+    display: none; /* Ocultar por defecto en escritorio */
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    color: var(--text-light);
+    cursor: pointer;
+    z-index: 1001; /* Asegurar que esté por encima del menú abierto */
+    transition: transform 0.3s ease-in-out; /* Transición para la rotación del icono */
+}
+
+/* Animación del icono del menú móvil a una "X" o rotación */
+.menu-toggle.active {
+    transform: rotate(90deg); /* O cualquier otra transformación que desees */
+}
+
+/* ======================================== */
+/* Sección Principal (Hero) */
+/* ======================================== */
+.hero-section {
+    padding: var(--spacing-lg) 0 80px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-lg) 0;
+}
+
+.hero-image {
+    max-width: 350px;
+    height: auto;
+    margin-bottom: var(--spacing-md);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    transform-origin: center bottom;
+}
+
+.hero-section h1 {
+    font-size: 3.8em;
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.1;
+    color: var(--text-light);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.hero-section p {
+    font-size: 1.3em;
+    max-width: 750px;
+    margin-bottom: var(--spacing-md);
+    line-height: 1.5;
+    color: #c0c0c0;
+    font-weight: 300;
+}
+
+/* ======================================== */
+/* Sección de Beneficios */
+/* ======================================== */
+.benefits-section {
+    background-color: var(--card-background);
+    padding: var(--spacing-lg) 0;
+    text-align: center;
+}
+
+.benefits-section h2 {
+    font-size: 2.8em;
+    margin-bottom: var(--spacing-md);
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+.benefits-section .subtitle {
+    font-size: 1.2em;
+    margin-bottom: var(--spacing-lg);
+    color: #c0c0c0;
+    font-weight: 300;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.benefit-item {
+    background-color: var(--background-dark);
+    padding: var(--spacing-md) 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.benefit-item:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.benefit-item i {
+    font-size: 3.5em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    display: block;
+}
+
+.benefit-item h3 {
+    font-size: 1.6em;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+.benefit-item p {
+    font-size: 1em;
+    color: #bbb;
+    line-height: 1.4;
+}
+
+/* ======================================== */
+/* Sección de Testimonios */
+/* ======================================== */
+.testimonials-section {
+    padding: var(--spacing-lg) 0;
+    text-align: center;
+    background-color: var(--background-dark);
+}
+
+.testimonials-section h2 {
+    font-size: 2.8em;
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.testimonial-item {
+    background-color: var(--card-background);
+    padding: var(--spacing-md) 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid var(--border-color);
+}
+
+.testimonial-item p {
+    font-style: italic;
+    margin-bottom: 15px;
+    color: var(--text-light);
+    font-size: 1.1em;
+    line-height: 1.5;
+}
+
+.testimonial-item .author {
+    font-weight: 500;
+    color: var(--primary-color);
+    text-align: right;
+    font-size: 0.95em;
+}
+
+/* ======================================== */
+/* Sección de Garantía */
+/* ======================================== */
+.guarantee-section {
+    background: linear-gradient(135deg, var(--primary-color), #004d99);
+    padding: var(--spacing-lg) 0;
+    text-align: center;
+    color: var(--background-dark);
+    box-shadow: inset 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.guarantee-section i {
+    font-size: 4.5em;
+    margin-bottom: var(--spacing-md);
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.guarantee-section h2 {
+    font-size: 3em;
+    margin-bottom: var(--spacing-md);
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.guarantee-section p {
+    font-size: 1.4em;
+    max-width: 800px;
+    margin: 0 auto var(--spacing-md);
+    font-weight: 400;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.guarantee-section .btn {
+    background: var(--background-dark);
+    color: var(--primary-color);
+    border: none;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+.guarantee-section .btn:hover {
+    background: #000;
+    color: var(--secondary-color);
+}
+
+/* ======================================== */
+/* Sección de Preguntas Frecuentes (FAQ) */
+/* ======================================== */
+.faq-section {
+    padding: var(--spacing-lg) 0;
+    background-color: var(--background-dark);
+}
+
+.faq-section h2 {
+    font-size: 2.8em;
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+.faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.faq-item:hover {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.faq-question {
+    padding: 18px 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+    font-size: 1.15em;
+    color: var(--text-light);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.faq-question:hover {
+    background-color: #2e2e2e;
+}
+
+.faq-question i {
+    transition: transform 0.3s ease;
+}
+
+.faq-question.active {
+    color: var(--primary-color);
+}
+
+.faq-question.active i {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    padding: 0 25px;
+}
+
+.faq-answer p {
+    padding-bottom: 18px;
+    padding-top: 5px;
+    color: #bbb;
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+/* ======================================== */
+/* Sección de Contacto */
+/* ======================================== */
+.contact-section {
+    padding: var(--spacing-lg) 0;
+    background-color: var(--card-background);
+    text-align: center;
+}
+
+.contact-section h2 {
+    font-size: 2.8em;
+    margin-bottom: var(--spacing-md);
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+.contact-section .subtitle {
+    font-size: 1.2em;
+    margin-bottom: var(--spacing-lg);
+    color: #c0c0c0;
+    font-weight: 300;
+}
+
+.contact-form-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: var(--background-dark);
+    padding: var(--spacing-lg);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.contact-form .form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-light);
+    font-size: 1.05em;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: #2e2e2e;
+    color: var(--text-light);
+    font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #888;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+    outline: none;
+}
+
+.contact-info h3 {
+    font-size: 1.8em;
+    margin-bottom: var(--spacing-md);
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+.contact-info ul {
+    list-style: none;
+    margin-bottom: var(--spacing-md);
+}
+
+.contact-info ul li {
+    font-size: 1.1em;
+    color: #bbb;
+    margin-bottom: 10px;
+}
+
+.contact-info ul li i {
+    color: var(--primary-color);
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.social-links {
+    margin-top: var(--spacing-md);
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.social-links a {
+    color: var(--text-light);
+    font-size: 1.8em;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+/* ======================================== */
+/* Pie de Página (Footer) */
+/* ======================================== */
+.footer {
+    background-color: #000;
+    color: #888;
+    padding: var(--spacing-md) 0;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.9em;
+}
+
+.footer .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-nav {
+    margin-top: 0;
+}
+
+.footer-nav a {
+    color: #888;
+    text-decoration: none;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+}
+
+.footer-nav a:hover {
+    color: var(--primary-color);
+}
+
+/* ======================================== */
+/* Botones Flotantes */
+/* ======================================== */
+.floating-buttons {
+    position: fixed;
+    bottom: var(--spacing-md); /* Distancia desde abajo */
+    right: var(--spacing-md); /* Distancia desde la derecha */
+    display: flex;
+    flex-direction: column; /* Apilar verticalmente */
+    gap: var(--spacing-sm); /* Espacio entre botones */
+    z-index: 999; /* Por debajo de la navbar pero por encima del contenido */
+}
+
+.float-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px; /* Tamaño del botón */
+    height: 55px;
+    border-radius: 50%; /* Hacerlo circular */
+    color: #fff;
+    font-size: 1.8em; /* Tamaño del icono */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, background-color 0.3s ease, opacity 0.3s ease;
+    text-decoration: none; /* Quitar subrayado para enlaces */
+    border: none; /* Eliminar borde del botón */
+    cursor: pointer;
+}
+
+.float-btn:hover {
+    transform: translateY(-5px); /* Pequeña elevación al pasar el mouse */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Colores específicos para cada botón */
+.whatsapp-btn {
+    background-color: #25D366; /* Verde de WhatsApp */
+}
+
+.whatsapp-btn:hover {
+    background-color: #1DA851;
+}
+
+.instagram-btn {
+    /* Degradado de Instagram */
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    background: -moz-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+
+.instagram-btn:hover {
+    transform: translateY(-5px) scale(1.05); /* Escala un poco más al pasar el mouse */
+}
+
+.scroll-to-top-btn {
+    background-color: var(--primary-color); /* Color primario de tu tema */
+    display: none; /* Inicialmente oculto, JS lo mostrará */
+    opacity: 0; /* Para la transición de aparición/desaparición */
+}
+
+.scroll-to-top-btn.show {
+    display: flex; /* Mostrar cuando la clase 'show' esté presente */
+    opacity: 1; /* Hacerlo visible */
+}
+
+
+/* ======================================== */
+/* Animaciones (CSS) */
+/* ======================================== */
+
+/* Estilos iniciales para elementos ocultos/transformados */
+.fade-in {
+    opacity: 0;
+    transition: opacity var(--transition-duration) ease-out;
+}
+
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity var(--transition-duration) ease-out, transform var(--transition-duration) ease-out;
+}
+
+.fade-in-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity var(--transition-duration) ease-out, transform var(--transition-duration) ease-out;
+}
+
+.fade-in-right {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity var(--transition-duration) ease-out, transform var(--transition-duration) ease-out;
+}
+
+.scale-in {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity var(--transition-duration) ease-out, transform var(--transition-duration) ease-out;
+}
+
+/* Clases para retrasos en animaciones */
+.delay-0 { transition-delay: var(--animation-delay-base); }
+.delay-1 { transition-delay: calc(var(--animation-delay-base) * 2); }
+.delay-2 { transition-delay: calc(var(--animation-delay-base) * 3); }
+.delay-3 { transition-delay: calc(var(--animation-delay-base) * 4); }
+.delay-4 { transition-delay: calc(var(--animation-delay-base) * 5); }
+.delay-5 { transition-delay: calc(var(--animation-delay-base) * 6); }
+
+
+/* Clase para activar la animación (agregada por JS) */
+.animated {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+}
+
+
+/* ======================================== */
+/* Media Queries (Responsividad) */
+/* ======================================== */
+@media (max-width: 900px) {
+    .contact-form-wrapper {
+        grid-template-columns: 1fr;
+    }
+    .contact-info {
+        margin-top: var(--spacing-lg);
+        text-align: center;
+    }
+    .social-links {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --spacing-lg: 40px;
+        --navbar-height: 60px;
+    }
+
+    body {
+        padding-top: var(--navbar-height);
+    }
+
+    .hero-section h1 {
+        font-size: 2.5em;
+        letter-spacing: -0.01em;
+    }
+    .hero-section p {
+        font-size: 1.1em;
+    }
+    .hero-image {
+        max-width: 250px;
+    }
+
+    /* Navegación móvil */
+    .navbar-nav {
+        /* Eliminamos 'display: none;' */
+        flex-direction: column;
+        position: absolute;
+        top: var(--navbar-height);
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.95);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        padding: 20px 0;
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+
+        /* Propiedades para la animación */
+        transform: translateY(-100%); /* Deslizado hacia arriba, fuera de la vista */
+        opacity: 0; /* Totalmente transparente */
+        visibility: hidden; /* Oculto para no interactuar con él */
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out, visibility 0.3s ease-out; /* Animamos todo */
+    }
+
+    .navbar-nav.active {
+        /* Eliminamos 'display: flex;' */
+        transform: translateY(0); /* Vuelve a su posición original */
+        opacity: 1; /* Se hace visible */
+        visibility: visible; /* Se hace interactuable */
+        /* Para el efecto de "desvanecer al salir",
+           el `transition-delay` para `visibility` se aplica al salir.
+           Al entrar, `visibility` se hace `visible` inmediatamente. */
+        transition-delay: 0s; /* No hay retraso al entrar */
+    }
+
+    .navbar-nav li {
+        margin: 10px 0; /* Espacio vertical para los elementos del menú móvil */
+        text-align: center;
+    }
+    .navbar-nav a {
+        font-size: 1.2em;
+        padding: 10px 0;
+        /* Las animaciones de opacity y transform se manejan al abrir el menú */
+        /* Así que no necesitamos un estado inicial aquí que los oculte */
+        opacity: 1; /* Asegurar que sean visibles en el menú móvil */
+        transform: translateY(0);
+    }
+    .navbar-nav a::after { /* Deshabilitar la línea inferior en móvil si no quieres */
+        display: none;
+    }
+    .navbar-nav .nav-btn {
+        margin-top: 15px; /* Espacio para el botón de contacto en móvil */
+    }
+
+    .menu-toggle {
+        display: block; /* Mostrar el botón del menú móvil */
+    }
+
+    .benefits-grid, .testimonial-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .benefits-section h2,
+    .testimonials-section h2,
+    .guarantee-section h2,
+    .faq-section h2 {
+        font-size: 2.2em;
+    }
+    .guarantee-section p {
+        font-size: 1.2em;
+    }
+    .footer .container {
+        flex-direction: column;
+    }
+    .footer-nav {
+        margin-top: 15px;
+    }
+    .footer-nav a {
+        margin: 0 8px;
+        display: block;
+        padding: 5px 0;
+    }
+    .benefit-item, .testimonial-item {
+        padding: var(--spacing-md);
+        text-align: center;
+    }
+    .benefit-item i {
+        margin-bottom: 10px;
+    }
+    .benefit-item h3 {
+        font-size: 1.4em;
+    }
+    .testimonial-item .author {
+        text-align: center;
+    }
+
+    /* Ajuste de botones flotantes para móviles */
+    .floating-buttons {
+        bottom: var(--spacing-md);
+        right: var(--spacing-sm); /* Un poco más pegados al borde en móviles */
+        gap: var(--spacing-sm);
+    }
+    .float-btn {
+        width: 48px; /* Un poco más pequeños en móvil */
+        height: 48px;
+        font-size: 1.6em;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section h1 {
+        font-size: 2em;
+    }
+    .hero-section p {
+        font-size: 0.95em;
+    }
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+    .contact-form-wrapper {
+        padding: var(--spacing-md);
+    }
+    .contact-info h3 {
+        font-size: 1.5em;
+    }
+    .contact-info ul li {
+        font-size: 1em;
+    }
+    .social-links a {
+        font-size: 1.5em;
+    }
+}
